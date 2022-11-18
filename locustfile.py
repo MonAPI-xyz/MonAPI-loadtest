@@ -159,7 +159,7 @@ class MonAPILoadTestUser(HttpUser):
         
         # Standard API Monitor
         for i in range(10):
-            resp = self.client.post(f"{config['backend_url']}/monitor/", json={
+            resp = self.client.post(f"/monitor/", json={
                 "name": f"Test API {i}",
                 "method": "GET",
                 "url": "https://jsonplaceholder.typicode.com/posts/1",
@@ -182,7 +182,7 @@ class MonAPILoadTestUser(HttpUser):
         
         # API Monitor with assertions
         for i in range(5):
-            resp = self.client.post(f"{config['backend_url']}/monitor/", json={
+            resp = self.client.post(f"/monitor/", json={
                 "name": f"Test API {i}",
                 "method": "GET",
                 "url": "https://jsonplaceholder.typicode.com/posts/1",
@@ -209,7 +209,7 @@ class MonAPILoadTestUser(HttpUser):
             
         # API Monitor with previous step
         for i in range(5):
-            resp = self.client.post(f"{config['backend_url']}/monitor/", json={
+            resp = self.client.post(f"/monitor/", json={
                 "name": f"Test API {i}",
                 "method": "GET",
                 "url": "https://jsonplaceholder.typicode.com/posts/1",
