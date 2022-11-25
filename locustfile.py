@@ -18,7 +18,7 @@ class MonAPILoadTestUser(HttpUser):
             'name': "team-name",
             'description': "team-description",
             'logo': None,
-        })
+        }, headers=self.header)
         
 
     @task
@@ -26,7 +26,7 @@ class MonAPILoadTestUser(HttpUser):
         self.client.post("/auth/login/", json={
             'email': self.user_account['email'],
             'password': self.user_account['password'],
-        }, headers=self.header)
+        })
         
     @task
     def current_team(self):
