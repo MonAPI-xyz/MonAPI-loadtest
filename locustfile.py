@@ -13,11 +13,20 @@ class MonAPILoadTestUser(HttpUser):
     error_log_id = None
     
     @task
+    def createNewTeam(self):
+        self.client.post("/team-management/", json={
+            'name': "team-name",
+            'description': "team-description",
+            'logo': None,
+        })
+        
+
+    @task
     def login(self):
         self.client.post("/auth/login/", json={
             'email': self.user_account['email'],
             'password': self.user_account['password'],
-        })
+        }, headers=self.header)
         
     @task
     def current_team(self):
