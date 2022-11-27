@@ -11,7 +11,12 @@ class MonAPILoadTestUser(HttpUser):
     api_monitor_id = []
     header = {}
     error_log_id = None
-    
+
+    @task
+    def getInviteToken(self):
+        self.client.get("invite-member/token/", json={
+            'key': "invalid-key"
+        }, headers=self.header)
     @task
     def createNewTeam(self):
         self.client.post("/team-management/", json={
