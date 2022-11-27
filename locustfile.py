@@ -19,7 +19,16 @@ class MonAPILoadTestUser(HttpUser):
             'description': "team-description",
             'logo': None,
         }, headers=self.header)
+
+    @task
+    def editTeam(self):
+        resp = self.client.get("/auth/current_team/", headers=self.header)
+        resp_current_team = resp.json()
         
+        self.client.put(f"/team-management/{resp_current_team['id']}/", json={
+            'description': "team-description",
+            'logo': None,
+        }, headers=self.header)        
 
     @task
     def login(self):
