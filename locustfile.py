@@ -17,6 +17,7 @@ class MonAPILoadTestUser(HttpUser):
         self.client.get("invite-member/token/", json={
             'key': "invalid-key"
         }, headers=self.header)
+
     @task
     def createNewTeam(self):
         self.client.post("/team-management/", json={
