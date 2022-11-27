@@ -145,7 +145,10 @@ class MonAPILoadTestUser(HttpUser):
             "email_use_tls": True,
             "email_use_ssl": True
         }, headers=self.header)
-    
+
+    @task
+    def viewCurrentTeam(self):
+        self.client.get("/team-management/current/", headers=self.header)    
         
     def on_start(self):
         # Read user mock
